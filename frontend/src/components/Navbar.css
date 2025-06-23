@@ -1,0 +1,97 @@
+/* Base Navbar Styling */
+.navbar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .navbar ul li {
+    margin: 0 1em;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover effect for links */
+  .navbar ul li a:hover {
+    color: #FFD700;
+    transform: scale(1.1);
+  }
+  
+  /* Mobile responsive navbar */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar ul {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .navbar ul li {
+      width: 100%;
+      text-align: left;
+      padding: 0.5em 1em;
+    }
+  
+    .navbar ul li a {
+      font-size: 1.5em;
+      padding: 1em;
+      width: 100%;
+    }
+  
+    .navbar.active ul {
+      display: flex;
+    }
+  
+    /* Hamburger icon */
+    .navbar .hamburger {
+      display: block;
+      cursor: pointer;
+      font-size: 1.8em;
+      color: white;
+      background: transparent;
+      border: none;
+    }
+  
+    /* Animation for Hamburger Menu */
+    .navbar .hamburger.active {
+      transform: rotate(90deg);
+    }
+  }
+  
+  /* Animation when navbar is active */
+  .navbar ul li a {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
