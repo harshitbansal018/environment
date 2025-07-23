@@ -27,7 +27,8 @@ const AuthPage = ({ setIsAuthenticated }) => {
     }
   };
 
-  return (
+ return (
+  <div className="auth-page-wrapper">
     <div className="auth-page">
       <h2>{isLogin ? "Login" : "Register"}</h2>
       <form onSubmit={handleSubmit}>
@@ -54,7 +55,8 @@ const AuthPage = ({ setIsAuthenticated }) => {
         </button>
       </p>
     </div>
-  );
-};
+  </div>
+);}
+
 
 export default AuthPage;
