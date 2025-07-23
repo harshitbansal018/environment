@@ -1,17 +1,19 @@
+// App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import Rewards from './components/Rewards';
 import Community from './components/Community';
 import Footer from './components/Footer';
-import AuthPage from './components/AuthPage'; // import auth page
+import AuthPage from './components/AuthPage';
 
 import './App.css';
 
 const App = () => {
   const [points, setPoints] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // ✅ Auth state
 
   const addPoints = (practice) => {
     if (practice === 'used public transport') {
@@ -39,14 +41,21 @@ const App = () => {
           <Route
             path="/"
             element={
-              <>
-                <Dashboard />
-                <Rewards points={points} handleRedeem={redeemPoints} />
-                <Community addPoints={addPoints} />
-              </>
+              isAuthenticated ? (
+                <>
+                  <Dashboard />
+                  <Rewards points={points} handleRedeem={redeemPoints} />
+                  <Community addPoints={addPoints} />
+                </>
+              ) : (
+                <Navigate to="/auth" replace /> // 🔒 Redirect if not logged in
+              )
             }
           />
-          <Route path="/auth" element={<AuthPage />} />
+          <Route
+            path="/auth"
+            element={<AuthPage setIsAuthenticated={setIsAuthenticated} />}
+          />
         </Routes>
         <Footer />
       </div>

@@ -1,10 +1,13 @@
+// AuthPage.js
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'; // ✅ To redirect
 import "./AuthPage.css";
 
-const AuthPage = () => {
+const AuthPage = ({ setIsAuthenticated }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({ username: "", password: "" });
+  const navigate = useNavigate(); // ✅
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,6 +15,12 @@ const AuthPage = () => {
       const url = isLogin ? 'http://localhost:5000/api/login' : 'http://localhost:5000/api/register';
       const response = await axios.post(url, form);
       alert(response.data);
+
+      if (isLogin) {
+        setIsAuthenticated(true);      // ✅ Update auth state
+        navigate("/");                 // ✅ Redirect to main page
+      }
+
       setForm({ username: "", password: "" });
     } catch (err) {
       alert(err.response?.data || "Something went wrong");
