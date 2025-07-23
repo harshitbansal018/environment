@@ -43,10 +43,7 @@ const Dashboard = () => {
         </motion.li>
       </ul>
 
-      {/* Login/Register Button */}
-      <button className="auth-nav-btn" onClick={() => navigate("/auth")}>
-        Login / Register
-      </button>
+     
     </motion.section>
   );
 };
