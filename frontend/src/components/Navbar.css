@@ -1,97 +1,104 @@
 /* Base Navbar Styling */
 .navbar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: background-color 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Brand/title */
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+/* Nav links */
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 1em;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect */
+.nav-links li a:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  font-size: 2em;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    display: none;
     background-color: #4CAF50;
-    color: white;
-    padding: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    transition: background-color 0.3s ease-in-out;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
   }
-  
-  .navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+  .nav-links.open {
     display: flex;
   }
-  
-  .navbar ul li {
-    margin: 0 1em;
+
+  .nav-links li {
+    padding: 0.8em 1em;
+    text-align: left;
+    width: 100%;
   }
-  
-  .navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    transition: color 0.3s ease, transform 0.3s ease;
+
+  .nav-links li a {
+    font-size: 1.3em;
+    width: 100%;
+    display: block;
+    animation: fadeIn 0.3s ease-out;
   }
-  
-  /* Hover effect for links */
-  .navbar ul li a:hover {
-    color: #FFD700;
-    transform: scale(1.1);
+
+  .hamburger.active {
+    transform: rotate(90deg);
   }
-  
-  /* Mobile responsive navbar */
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar ul {
-      display: none;
-      width: 100%;
-      flex-direction: column;
-    }
-  
-    .navbar ul li {
-      width: 100%;
-      text-align: left;
-      padding: 0.5em 1em;
-    }
-  
-    .navbar ul li a {
-      font-size: 1.5em;
-      padding: 1em;
-      width: 100%;
-    }
-  
-    .navbar.active ul {
-      display: flex;
-    }
-  
-    /* Hamburger icon */
-    .navbar .hamburger {
-      display: block;
-      cursor: pointer;
-      font-size: 1.8em;
-      color: white;
-      background: transparent;
-      border: none;
-    }
-  
-    /* Animation for Hamburger Menu */
-    .navbar .hamburger.active {
-      transform: rotate(90deg);
-    }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
   }
-  
-  /* Animation when navbar is active */
-  .navbar ul li a {
-    animation: fadeIn 0.5s ease-out;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
+}
