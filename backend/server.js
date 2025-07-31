@@ -1,9 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+// import connectDB from './db';
 const bodyParser = require('body-parser');
+require('dotenv').config(); // ✅ Load env variables
+ const connectDB = require('./db'); // ✅ Your MongoDB Atlas connection file
+const authRoutes = require('./routes/auth');
 
 const app = express();
-const authRoutes = require('./routes/auth');
+
+// Connect to MongoDB Atlas
+connectDB(); // Make sure this function handles mongoose.connect()
 
 // Middleware
 app.use(cors());
@@ -17,13 +23,13 @@ app.get("/api/hello", (req, res) => {
   res.json({ message: "Hi from Vercel!" });
 });
 
-// ✅ Export the app instead of starting it (Vercel needs this)
+// ✅ Export the app instead of starting it (for Vercel)
 module.exports = app;
 
-// ✅ Optional: Start server only if running locally
+// ✅ Optional: Local development server
 if (require.main === module) {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
 }
